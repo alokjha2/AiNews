@@ -1,0 +1,8 @@
+
+
+git init
+git add .
+git commit -m "a simple chat with ai, along with images"
+git branch -M main
+git remote add origin https://github.com/alokjha2/AiNews.git
+git push -u origin main
