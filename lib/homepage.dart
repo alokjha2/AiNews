@@ -111,57 +111,56 @@ class _HomePageState extends State<HomePage> {
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        onSubmitted: (value) {
-                          _isInputEmpty ? null : _sendMessage;
-                          setState(() {
-                            _isInputEmpty = value.isEmpty;
-                          });
-                        },
-                        controller: _textEditingController,
-                        onChanged: (value) {
-                          setState(() {
-                            _isInputEmpty = value.isEmpty;
-                          });
-                        },
-                        decoration: InputDecoration(
-                          suffixIcon: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-
-                             image.isNotEmpty
-                              ? SizedBox(
-                                  height: 24,
-                                  width: 24,
-                                  child: Image.memory(image),
-                                )
-                              : IconButton(
-                                  onPressed: getImageBytes,
-                                  icon: Icon(Icons.image),
-                                ),
-
-
-                              IconButton(
-                                onPressed: _isInputEmpty ? null : _sendMessage,
-                                icon: Icon(Icons.send),
-                                color: _isInputEmpty ? Colors.grey : Colors.black,
-                              ),
-                            ],
-                          ),
-                          hintText: 'Enter your news here',
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                      ),
+                child: TextField(
+                  maxLines: 7,
+                  minLines: 1,
+                  onSubmitted: (value) {
+                    _isInputEmpty ? null : _sendMessage;
+                    setState(() {
+                      _isInputEmpty = value.isEmpty;
+                    });
+                  },
+                  controller: _textEditingController,
+                  onChanged: (value) {
+                    setState(() {
+                      _isInputEmpty = value.isEmpty;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    suffixIconConstraints: BoxConstraints(
+                      minHeight: 32, // Adjust this value as needed
+                      minWidth: 32, // Adjust this value as needed
                     ),
-                    
-                  ],
+                    suffixIcon:
+                     Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        image.isNotEmpty
+                            ? SizedBox(
+                                height: 24,
+                                width: 24,
+                                child: Image.memory(image),
+                              )
+                            : IconButton(
+                                onPressed: getImageBytes,
+                                icon: Icon(Icons.image),
+                              ),
+                        IconButton(
+                          onPressed: _isInputEmpty ? null : _sendMessage,
+                          icon: Icon(Icons.send),
+                          color: _isInputEmpty ? Colors.grey : Colors.black,
+                        ),
+                      ],
+                    ),
+                    hintText: 'Enter your news here',
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -235,36 +234,52 @@ class _HomePageState extends State<HomePage> {
 
  void _sendMessage() {
   int timestamp = DateTime.now().millisecondsSinceEpoch;
-
   String userInput = _textEditingController.text;
-  DatabaseHelper.insertMessage(Message(userInput, timestamp));
-  
+  // DatabaseHelper.insertMessage(Message(userInput, timestamp));
+
   // Check if the image is empty
   if (image.isNotEmpty) {
     messages.add(Message("You: $userInput", timestamp, image));
-  } else {
-    messages.add(Message("You: $userInput", timestamp)); // Add message without image
-  }
-  
-  _textEditingController.clear();
-  setState(() {
-    _isInputEmpty = true;
-  });
+    _textEditingController.clear();
+    setState(() {
+      _isInputEmpty = true;
+    });
 
-  gemini.streamGenerateContent(userInput, images: [image]).listen(
-    (value) {
-      // Update UI with AI response
-      setState(() {
-        messages.add(Message("AI: ${value.output}", timestamp));
-        // image.clear();
-      });
-    },
-    onError: (e) {
-      setState(() {
-        messages.add(Message("AI: ${e} ", timestamp));
-      });
-    },
-  );
+    // Call gemini.streamGenerateContent only if the image is not empty
+    gemini.streamGenerateContent(userInput, images: [image]).listen(
+      (value) {
+        // Update UI with AI response
+        setState(() {
+          messages.add(Message("AI: ${value.output}", timestamp));
+        });
+      },
+      onError: (e) {
+        setState(() {
+          messages.add(Message("AI: ${e} ", timestamp));
+        });
+      },
+    );
+  } else {
+    // If the image is empty, just add the user message without calling gemini.streamGenerateContent
+    messages.add(Message("You: $userInput", timestamp));
+    _textEditingController.clear();
+    setState(() {
+      _isInputEmpty = true;
+    });
+  }
+   gemini.streamGenerateContent(userInput).listen(
+      (value) {
+        // Update UI with AI response
+        setState(() {
+          messages.add(Message("AI: ${value.output}", timestamp));
+        });
+      },
+      onError: (e) {
+        setState(() {
+          messages.add(Message("AI: ${e} ", timestamp));
+        });
+      },
+    );
 }
 
 }
