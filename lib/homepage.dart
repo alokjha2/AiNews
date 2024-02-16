@@ -5,13 +5,16 @@
 
 import 'dart:async';
 import 'dart:developer';
+// import 'dart:ffi';
 import 'dart:typed_data';
 
+import 'package:ainews/localdb.dart';
 import 'package:ainews/message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:image_picker_web/image_picker_web.dart';
+import 'package:sqflite/sqflite.dart';
 
 
 
@@ -231,13 +234,16 @@ class _HomePageState extends State<HomePage> {
 }
 
  void _sendMessage() {
+  int timestamp = DateTime.now().millisecondsSinceEpoch;
+
   String userInput = _textEditingController.text;
+  DatabaseHelper.insertMessage(Message(userInput, timestamp));
   
   // Check if the image is empty
   if (image.isNotEmpty) {
-    messages.add(Message("You: $userInput", image));
+    messages.add(Message("You: $userInput", timestamp, image));
   } else {
-    messages.add(Message("You: $userInput")); // Add message without image
+    messages.add(Message("You: $userInput", timestamp)); // Add message without image
   }
   
   _textEditingController.clear();
@@ -249,13 +255,13 @@ class _HomePageState extends State<HomePage> {
     (value) {
       // Update UI with AI response
       setState(() {
-        messages.add(Message("AI: ${value.output}"));
+        messages.add(Message("AI: ${value.output}", timestamp));
         // image.clear();
       });
     },
     onError: (e) {
       setState(() {
-        messages.add(Message("AI: ${e} "));
+        messages.add(Message("AI: ${e} ", timestamp));
       });
     },
   );

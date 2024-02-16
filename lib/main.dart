@@ -15,6 +15,7 @@ class NewsVideoApp extends StatelessWidget {
     return MaterialApp(
       title: 'News Video Anchor',
       home: HomePage(),
+      theme: ThemeData(appBarTheme: AppBarTheme(color: Colors.white)),
       debugShowCheckedModeBanner: false,
     );
   }
