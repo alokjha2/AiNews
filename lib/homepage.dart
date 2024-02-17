@@ -148,7 +148,9 @@ class _HomePageState extends State<HomePage> {
                                 icon: Icon(Icons.image),
                               ),
                         IconButton(
-                          onPressed: _isInputEmpty ? null : _sendMessage,
+                          onPressed: _isInputEmpty ? null : 
+                          // _chat(),
+                          _sendMessage,
                           icon: Icon(Icons.send),
                           color: _isInputEmpty ? Colors.grey : Colors.black,
                         ),
@@ -268,7 +270,11 @@ class _HomePageState extends State<HomePage> {
     });
   }
    gemini.streamGenerateContent(userInput).listen(
-      (value) {
+
+    (value) {
+      // Future.delayed(Duration(seconds: 1));
+
+
         // Update UI with AI response
         setState(() {
           messages.add(Message("AI: ${value.output}", timestamp));
@@ -280,6 +286,16 @@ class _HomePageState extends State<HomePage> {
         });
       },
     );
+}
+
+
+
+
+
+
+_chat(){
+
+  gemini.chat(messages.cast<Content>());
 }
 
 }
