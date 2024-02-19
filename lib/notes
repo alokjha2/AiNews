@@ -2,7 +2,7 @@
 
 git init
 git add .
-git commit -m "added readme"
+git commit -m "lot of features added, ui done"
 git branch -M main
 git remote add origin https://github.com/alokjha2/AiNews.git
 git push -u origin main

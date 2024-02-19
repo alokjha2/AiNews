@@ -1,21 +1,35 @@
-import 'package:ainews/homepage.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gemini/flutter_gemini.dart';
-import 'package:flutter_tts/flutter_tts.dart';
-import 'package:video_player/video_player.dart';
+import 'package:ainews/import.dart';
 
-void main() {
-  
-  Gemini.init(apiKey: 'AIzaSyDztTJXIubhrH5LQ_Jejqys712iylUchwI');
+void main()async {
+  setUrlStrategy(PathUrlStrategy());
+  OpenAI.apiKey = "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";
+  Gemini.init(apiKey: "AIzaSyDztTJXIubhrH5LQ_Jejqys712iylUchwI");
   runApp(NewsVideoApp());}
 
 class NewsVideoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'News Video Anchor',
-      home: HomePage(),
-      theme: ThemeData(appBarTheme: AppBarTheme(color: Colors.white)),
+    return GetMaterialApp(
+      scrollBehavior: ScrollBehavior(),
+      title: 'Ai',
+      home: 
+      HomeScreen(),
+      routes: {
+        '/product': (context) => Products(),
+        '/usecases': (context) => HowItWorks(),
+        '/features': (context) => Features(),
+        '/creators': (context) => Creators(),
+        '/HomePage': (context) => HomePage(),
+        // '/HomePage': (context) => (),
+      },
+      // darkTheme: ThemeData.dark(),
+      // themeMode:
+      // Get.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+      //  ThemeMode.system,
+      theme: ThemeData(
+        backgroundColor: bgColor,
+        // appBarTheme: AppBarTheme(color: Colors.white)
+        ),
       debugShowCheckedModeBanner: false,
     );
   }

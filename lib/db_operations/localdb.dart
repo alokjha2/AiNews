@@ -1,6 +1,6 @@
 
 
-import 'package:ainews/message.dart';
+import 'package:ainews/models/message.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 

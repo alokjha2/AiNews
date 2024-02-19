@@ -26,11 +26,29 @@
   <meta name="apple-mobile-web-app-title" content="ainews">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="Ai.png"/>
 
   <title>ainews</title>
   <link rel="manifest" href="manifest.json">
+
+  <style>
+    /* Style for the splash screen */
+    .splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #ffffff; /* Change background color as needed */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .splash-screen img {
+      max-width: 300px; /* Adjust size as needed */
+    }
+  </style>
 
   <script>
     // The value below is injected by flutter build, do not touch.
@@ -40,6 +58,12 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
+  <!-- Splash screen -->
+  <div class="splash-screen">
+    <img src="Ai.png" alt="Splash Screen">
+    <!-- Replace 'splash_screen_image.png' with the path to your splash screen image -->
+  </div>
+
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
@@ -50,6 +74,8 @@
         onEntrypointLoaded: function(engineInitializer) {
           engineInitializer.initializeEngine().then(function(appRunner) {
             appRunner.runApp();
+            // Hide splash screen when the app is loaded
+            document.querySelector('.splash-screen').style.display = 'none';
           });
         }
       });
