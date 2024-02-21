@@ -1,4 +1,3 @@
-import 'package:ainews/home.dart';
 import 'package:ainews/import.dart';
 
 void main()async {
