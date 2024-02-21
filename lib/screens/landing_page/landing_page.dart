@@ -1,40 +1,56 @@
 
+import 'package:flutter/material.dart';
 import 'package:ainews/import.dart';
 
-class HomeScreen extends StatelessWidget {
+class LandingPage extends StatelessWidget{
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor:Color(0xFF020012),
       endDrawer: Container(
         constraints: BoxConstraints(maxWidth: 300),
-        child: SideMenu()),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: CustomScrollView(
-          slivers: <Widget>[
-            // SliverPersistentHeader containing your fixed header
-            SliverPersistentHeader(
-              pinned: true,
-              delegate: _SliverHeaderDelegate(
-                minHeight: 120, // Set your desired header height
-                maxHeight: 120,
-                child: Header(),
-              ),
+        child: SideMenu(),
+      ),
+      body: 
+      LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          return Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: constraints.maxWidth >= 768 ? 100 : 30, // Adjust padding based on screen width
             ),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                Jumbotron(),
-                Products(),
-                HowItWorks(),
-                Features(),
-                Creators(),
-                Footer(),
-              ]),
+            child: 
+            CustomScrollView(
+              slivers: <Widget>[
+                // SliverPersistentHeader containing your fixed header
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: _SliverHeaderDelegate(
+                    minHeight: 120, // Set your desired header height
+                    maxHeight: 120,
+                    child: 
+                    
+                    Header(),
+                  ),
+                ),
+
+                
+                SliverList(
+                  delegate: SliverChildListDelegate(
+                    [
+                      Jumbotron(),
+                      Products(),
+                      HowItWorks(),
+                      Features(),
+                      Creators(),
+                      Footer(),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

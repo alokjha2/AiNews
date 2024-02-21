@@ -52,7 +52,7 @@ export 'package:url_launcher/url_launcher.dart';
 
 export 'dart:typed_data';
 
-
+export 'package:ainews/controller/landing_page_controller.dart';
 
 export 'dart:async';
 // export 'dart:developer';

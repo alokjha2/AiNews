@@ -1,6 +1,8 @@
+import 'package:ainews/home.dart';
 import 'package:ainews/import.dart';
 
 void main()async {
+  WidgetsFlutterBinding.ensureInitialized();
   setUrlStrategy(PathUrlStrategy());
   OpenAI.apiKey = "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";
   Gemini.init(apiKey: "AIzaSyDztTJXIubhrH5LQ_Jejqys712iylUchwI");
@@ -10,17 +12,19 @@ class NewsVideoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      scrollBehavior: ScrollBehavior(),
+      // scrollBehavior: ScrollBehavior(),
       title: 'Ai',
       home: 
-      HomeScreen(),
+
+      // MyHomePage(),
+      LandingPage(),
       routes: {
-        '/product': (context) => Products(),
-        '/usecases': (context) => HowItWorks(),
-        '/features': (context) => Features(),
-        '/creators': (context) => Creators(),
+        // '/product': (context) => Products(),
+        // '/usecases': (context) => HowItWorks(),
+        // '/features': (context) => Features(),
+        // '/creators': (context) => Creators(),
         '/HomePage': (context) => HomePage(),
-        // '/HomePage': (context) => (),
+        "/LandingPage" : (context) => LandingPage()
       },
       // darkTheme: ThemeData.dark(),
       // themeMode:
