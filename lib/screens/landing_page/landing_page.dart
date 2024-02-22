@@ -1,6 +1,8 @@
 
 import 'dart:math';
 
+import 'package:ainews/screens/landing_page/start_using_ai.dart';
+import 'package:ainews/screens/landing_page/widgets/features_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ainews/import.dart';
 
@@ -24,6 +26,7 @@ class LandingPage extends StatelessWidget{
             ),
             child: 
             CustomScrollView(
+              controller: _controller,
               slivers: <Widget>[
 
                 
@@ -35,7 +38,7 @@ class LandingPage extends StatelessWidget{
                     maxHeight: 120,
                     child: 
                     
-                    Header(),
+                    Header(controller: _controller),
                     scrollController: _controller
                   ),
                 ),
@@ -48,6 +51,9 @@ class LandingPage extends StatelessWidget{
                       Products(),
                       HowItWorks(),
                       Features(),
+                      MovingContainers(),
+                      AnimatedContainers(),
+                      // Text("Creators"),
                       Creators(),
                       Footer(),
                     ],

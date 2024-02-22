@@ -75,7 +75,7 @@ class MeteorPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final Paint paint = Paint()
       ..shader = LinearGradient(
-        colors: [Colors.purple.shade200, Colors.purple],
+        colors: [Color.fromARGB(255, 239, 33, 14), Colors.purple],
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
       ).createShader(Rect.fromLTWH(0, 0, size.width, size.height));
@@ -97,3 +97,5 @@ class MeteorPainter extends CustomPainter {
     return false;
   }
 }
+
+   

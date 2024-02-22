@@ -6,6 +6,9 @@ import 'nav_item.dart'; // Import your home page file
 import 'package:ainews/import.dart' as a;
 
 class Header extends StatefulWidget {
+  final controller;
+
+  const Header({super.key, this.controller});
   @override
   State<Header> createState() => _HeaderState();
 }
@@ -39,16 +42,25 @@ class _HeaderState extends State<Header> {
         children: <Widget>[
           // Conditionally render different image sizes based on device type
           if (!isMobile(context))
-            Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                // color: Colors.white,
-                image:  DecorationImage(
-      image: AssetImage('assets/Ai.png'), // Replace 'assets/image.jpg' with your image path
-      fit: BoxFit.cover, // Adjust the fit as needed
-    ),),
-              // child: Image.asset('assets/Ai.png'),
+            InkWell(
+              onTap: (){
+                widget.controller.animateTo(
+            0.0, // Scroll to the top
+            duration: Duration(milliseconds: 600), // Optional: Animation duration
+            curve: Curves.decelerate, // Optional: Animation curve
+          );
+              },
+              child: Container(
+                width: 200,
+                height: 200,
+                decoration: BoxDecoration(
+                  // color: Colors.white,
+                  image:  DecorationImage(
+                    image: AssetImage('assets/Ai.png'), // Replace 'assets/image.jpg' with your image path
+                    fit: BoxFit.cover, // Adjust the fit as needed
+                  ),),
+                // child: Image.asset('assets/Ai.png'),
+              ),
             )
           else
             Container(

@@ -57,6 +57,7 @@ dependencies:
   url_launcher:
   timeline_tile: ^2.0.0
   step_progress_indicator: ^1.0.2
+  entry: ^0.0.9
 
 dev_dependencies:
   flutter_test:

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 // import 'package:ainews/header.dart';
+import 'package:ainews/app.dart';
 import 'package:ainews/import.dart';
 import 'package:ainews/shootingStar.dart';
 import 'package:ainews/stars.dart' as a;
@@ -37,6 +38,14 @@ class _JumbotronState extends State<Jumbotron> with TickerProviderStateMixin {
     animationController.forward();
   }
 
+@override
+  void dispose() {
+    // Clean up resources here
+    this.dispose();
+    super.dispose();
+  }
+  
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -46,7 +55,7 @@ class _JumbotronState extends State<Jumbotron> with TickerProviderStateMixin {
         children: <Widget>[
           Container(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+            height: MediaQuery.of(context).size.height - 120,
             color: Color(0xFF020012),
           ),
           ...makeStar(MediaQuery.of(context).size.width,
@@ -72,6 +81,12 @@ class _JumbotronState extends State<Jumbotron> with TickerProviderStateMixin {
               stopPauseOnTap: true,
             ),
           ),
+
+          //     Shooting(
+          //   startPosition: Offset(0, 0), // Start position of the shooting star
+          //   endPosition: Offset(0, 200), // End position of the shooting star
+          //   animationController: animationController, // Pass the animation controller
+          // ),
         ],
       
     );

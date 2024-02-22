@@ -24,39 +24,42 @@ class DesktopFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-              flex: 1,
-              child: Text(
-                'All Right Reserved',
-                style: TextStyle(fontSize: 10),
-              )),
-          Expanded(
-              flex: 2,
-              child: Row(
-                children: <Widget>[
-                  NavItem(
-                    title: 'Twitter',
-                    tapEvent: () {},
-                  ),
-                  NavItem(
-                    title: 'Facebook',
-                    tapEvent: () {},
-                  ),
-                  NavItem(
-                    title: 'Linkedin',
-                    tapEvent: () {},
-                  ),
-                  NavItem(
-                    title: 'Instagram',
-                    tapEvent: () {},
-                  ),
-                ],
-              )),
-        ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+                flex: 1,
+                child: Text(
+                  'All Right Reserved',
+                  style: TextStyle(fontSize: 10, color: Colors.white),
+                )),
+            Expanded(
+                flex: 2,
+                child: Row(
+                  children: <Widget>[
+                    NavItem(
+                      title: 'Twitter',
+                      tapEvent: () {},
+                    ),
+                    NavItem(
+                      title: 'Facebook',
+                      tapEvent: () {},
+                    ),
+                    NavItem(
+                      title: 'Linkedin',
+                      tapEvent: () {},
+                    ),
+                    NavItem(
+                      title: 'Instagram',
+                      tapEvent: () {},
+                    ),
+                  ],
+                )),
+          ],
+        ),
       ),
     );
   }
