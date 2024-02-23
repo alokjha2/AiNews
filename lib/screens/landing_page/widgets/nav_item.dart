@@ -15,9 +15,10 @@ class NavItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      highlightColor: Colors.transparent,
+      splashColor: Colors.transparent,
       onTap: tapEvent,
-      hoverColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      // hoverColor: Colors.transparent,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15),
         child: Text(

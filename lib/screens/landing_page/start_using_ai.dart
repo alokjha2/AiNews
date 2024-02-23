@@ -2,6 +2,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class AnimatedContainers extends StatefulWidget {
   @override
@@ -49,8 +50,6 @@ class _AnimatedContainersState extends State<AnimatedContainers>
   @override
   Widget build(BuildContext context) {
      Size size = MediaQuery.of(context).size;
-    //  final title = data.keys.elementAt(index);
-    //         final description = data[title];
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,16 +137,53 @@ class _AnimatedContainersState extends State<AnimatedContainers>
               onTapUp: (_) {
                 _stopAnimation();
               },
-              child: Container(
+              child: 
+              
+              
+              Container(
                 width: size.width/2- 80,
                 height: size.height/2 - 30,
                 color: Colors.red,
-                child: Center(
-                  child: Text(
-                    'Square 1',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+                child: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              data.keys.elementAt(1), // Display only the first entry key
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+            SizedBox(height: 4),
+            Text(
+              data.values.elementAt(1), // Display only the first entry value
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+              ),
+            ),
+          ],
+        ),
+
+        Container(
+          height: 50, 
+          width: 40,
+          color: Colors.transparent,
+      //     child: LoadingAnimationWidget.staggeredDotsWave(
+      //   color: Colors.white,
+      //   size: 100,
+      // ),
+          )
+        // Add your animated widget here
+        // For example, AnimatedContainer, AnimatedOpacity, etc.
+      ],
+    ),
               ),
             ),
             SizedBox(width: 20),
@@ -161,16 +197,45 @@ class _AnimatedContainersState extends State<AnimatedContainers>
               onTapUp: (_) {
                 _stopAnimation();
               },
-              child: Container(
-                width: size.width/2 - 80,
+              child: 
+              
+              
+              Container(
+                width: size.width/2- 80,
                 height: size.height/2 - 30,
-                color: Colors.green,
-                child: Center(
-                  child: Text(
-                    'Square 2',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+                color: Colors.red,
+                child: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              data.keys.elementAt(1), // Display only the first entry key
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+            SizedBox(height: 4),
+            Text(
+              data.values.elementAt(1), // Display only the first entry value
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+              ),
+            ),
+          ],
+        ),
+
+        Container(height: 50, width: 40,color: Colors.yellow,)
+        // Add your animated widget here
+        // For example, AnimatedContainer, AnimatedOpacity, etc.
+      ],
+    ),
               ),
             ),
           ],

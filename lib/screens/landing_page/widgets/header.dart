@@ -43,6 +43,8 @@ class _HeaderState extends State<Header> {
           // Conditionally render different image sizes based on device type
           if (!isMobile(context))
             InkWell(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
               onTap: (){
                 widget.controller.animateTo(
             0.0, // Scroll to the top
@@ -59,7 +61,6 @@ class _HeaderState extends State<Header> {
                     image: AssetImage('assets/Ai.png'), // Replace 'assets/image.jpg' with your image path
                     fit: BoxFit.cover, // Adjust the fit as needed
                   ),),
-                // child: Image.asset('assets/Ai.png'),
               ),
             )
           else

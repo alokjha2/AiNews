@@ -42,7 +42,7 @@ dependencies:
   flutter_tts: 
   flutter_gemini:  
   image_picker_web:  
-  loading_animation_widget:  
+  loading_animation_widget: ^1.2.0+4  
   dart_openai:  
   flutter_dotenv:  
   stability_image_generation: 
