@@ -3,6 +3,10 @@ import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 
 class HowItWorks extends StatefulWidget {
+  // final Key howItWorksKey;
+  // HowItWorks(this.howItWorksKey);
+
+
   @override
   State<HowItWorks> createState() => _HowItWorksState();
 }
@@ -50,6 +54,7 @@ class _HowItWorksState extends State<HowItWorks> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
+      // key: widget.howItWorksKey,
       height: size.height,
       width: double.maxFinite,
       child: Row(

@@ -1,68 +1,82 @@
 
 import 'dart:math';
 
+import 'package:ainews/screens/landing_page/feature_container.dart';
 import 'package:ainews/screens/landing_page/start_using_ai.dart';
-import 'package:ainews/screens/landing_page/widgets/features_slider.dart';
+// import 'package:ainews/screens/landing_page/widgets/features_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ainews/import.dart';
+import 'package:ainews/home_scene.dart';
 
 class LandingPage extends StatelessWidget{
   ScrollController _controller = ScrollController();
+  // Define GlobalKey for the sections you want to scroll to
+final GlobalKey productKey = GlobalKey();
+final GlobalKey howItWorksKey = GlobalKey();
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Color(0xFF020012),
+      backgroundColor: Colors.black,
+      // backgroundColor:Color(0xFF020012),
       endDrawer: Container(
         constraints: BoxConstraints(maxWidth: 300),
         child: SideMenu(),
       ),
       body: 
-      LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          return Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: constraints.maxWidth >= 768 ? 70 : 20, // Adjust padding based on screen width
-            ),
-            child: 
-            CustomScrollView(
-              controller: _controller,
-              slivers: <Widget>[
-
+      Scrollbar(
+        child: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            return Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: constraints.maxWidth >= 768 ? 70 : 20, // Adjust padding based on screen width
+              ),
+              child: 
+              CustomScrollView(
+                controller: _controller,
+                scrollDirection: Axis.vertical,
                 
-                // SliverPersistentHeader containing your fixed header
-                SliverPersistentHeader(
-                  pinned: true,
-                  delegate: _SliverHeaderDelegate(
-                    minHeight: 120, // Set your desired header height
-                    maxHeight: 120,
-                    child: 
-                    
-                    Header(controller: _controller),
-                    scrollController: _controller
-                  ),
-                ),
+                slivers: <Widget>[
+        
+                  
+                  // SliverPersistentHeader containing your fixed header
+                  SliverPersistentHeader(
+                    pinned: true,
+                    delegate: _SliverHeaderDelegate(
+                      minHeight: 120, // Set your desired header height
+                      maxHeight: 120,
+                      child: 
 
-                
-                SliverList(
-                  delegate: SliverChildListDelegate(
-                    [
-                      Jumbotron(),
-                      Products(),
-                      HowItWorks(),
-                      Features(),
-                      MovingContainers(),
-                      AnimatedContainers(),
-                      // Text("Creators"),
-                      Creators(),
-                      Footer(),
-                    ],
+                      
+                      Header(controller: _controller, HowItWorks: howItWorksKey,),
+                      scrollController: _controller
+                    ),
                   ),
-                ),
-              ],
-            ),
-          );
-        },
+        
+                  
+                  SliverList(
+                    delegate: SliverChildListDelegate(
+                      [
+                        HomeScene(),
+                        Jumbotron(),
+                        Products(),
+                        HowItWorks(),
+                        Features(),
+                        MovingContainers(),
+                        SizedBox(height: 10,),
+                        AnimatedContainers(),
+                        // Text("Creators"),
+                        Creators(),
+                        Footer(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

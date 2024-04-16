@@ -15,7 +15,7 @@ class _FeaturesState extends State<Features> with TickerProviderStateMixin {
   // Define your timeline data
   final Map<String, dynamic> _timelineData = {
     'Chat': "Chat with your AI buddy",
-    'Video Call': "Have Video call",
+    'Video Call': "Have Video call with Cartoon AI anytime, anywhere",
     'Video News': "Get AI generated Video News",
     // Add more events as needed
   };
@@ -150,17 +150,9 @@ class _FeaturesState extends State<Features> with TickerProviderStateMixin {
           ),
         Expanded(
             flex: 3,
-            child: AnimatedBuilder(
-              animation: _animationController,
-              builder: (context, child) {
-                return Transform.scale(
-                  scale: 1.0 - (_animationController.value * 0.2),
-                  child: Opacity(
-                    opacity: _isDetailVisible ? 1.0 : 0.0,
-                    child: _buildTimelineDetail(size),
-                  ),
-                );
-              },
+            child: Opacity(
+              opacity: _isDetailVisible ? 1.0 : 0.0,
+              child: _buildTimelineDetail(size),
             ),
           ),
         ],
@@ -171,7 +163,7 @@ class _FeaturesState extends State<Features> with TickerProviderStateMixin {
   Widget _buildTimelineDetail(size) {
   // Get the selected key and entry
   String selectedKey = _timelineData.keys.toList()[_selectedPointIndex];
-  MapEntry selectedEntry = _timelineData.entries.toList()[_selectedPointIndex];
+  String description = _timelineData[selectedKey];
 
   return Container(
     height: size.height / 1.1,
@@ -180,12 +172,25 @@ class _FeaturesState extends State<Features> with TickerProviderStateMixin {
       borderRadius: BorderRadius.all(Radius.circular(10)),
       border: Border.all(color: Colors.white30, width: 1),
     ),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Text('Selected Key: $selectedKey'),
-        Text('Selected Entry: $selectedEntry'),
-      ],
+    child: Padding(
+      padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(
+            selectedKey,
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+          ),
+          SizedBox(height: 10),
+          Text(
+            description,
+            style: TextStyle(color: Colors.white),
+          ),
+
+          Divider()
+        ],
+      ),
     ),
   );
 }

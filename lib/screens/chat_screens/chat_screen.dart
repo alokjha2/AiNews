@@ -27,7 +27,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   // final ThemeController _themeController = Get.find();
 
-final StabilityAI _ai = StabilityAI();
+// final StabilityAI _ai = StabilityAI();
 
 
   // final _creator = GlobalKey();
@@ -253,6 +253,7 @@ SizedBox(width: 3,),
     setState(() {
       _isInputEmpty = true;
     });
+    DatabaseHelper.insertMessage(Message(userInput, timestamp, "user", image));
 
     // Call gemini.streamGenerateContent only if the image is not empty
     gemini.streamGenerateContent(userInput, images: [image]).listen(
@@ -261,6 +262,7 @@ SizedBox(width: 3,),
         setState(() {
           messages.add(Message("${value.output}", timestamp, "AI"));
         });
+          DatabaseHelper.insertMessage(Message("${value.output}", timestamp, "AI"));
       },
       onError: (e) {
         setState(() {

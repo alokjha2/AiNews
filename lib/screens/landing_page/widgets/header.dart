@@ -1,4 +1,5 @@
 import 'package:ainews/screens/homePage/homepage.dart';
+import 'package:ainews/screens/landing_page/how_it_works.dart';
 import 'package:ainews/utils/color.dart';
 import 'package:flutter/material.dart';
 import 'package:ainews/services/responsiveness.dart';
@@ -7,8 +8,9 @@ import 'package:ainews/import.dart' as a;
 
 class Header extends StatefulWidget {
   final controller;
+  final HowItWorks;
 
-  const Header({super.key, this.controller});
+  const Header({this.HowItWorks, this.controller});
   @override
   State<Header> createState() => _HeaderState();
 }
@@ -17,6 +19,7 @@ class _HeaderState extends State<Header> {
 
   late BoxDecoration containerDecoration;
   late Color textColor;
+  //  final ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
@@ -34,6 +37,8 @@ class _HeaderState extends State<Header> {
   // Add more keys for additional sections as needed
   @override
   Widget build(BuildContext context) {
+    // final contextValue = context;
+
  
     return Container(
       // margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
@@ -98,12 +103,62 @@ class _HeaderState extends State<Header> {
                       title: 'Product',
                       tapEvent:
                        () {
+
                       },
                     ),
+
+                    InkWell(
+      splashColor: Colors.transparent,
+      onTap: (){
+      if (widget.HowItWorks != null) {
+  Scrollable.ensureVisible(
+    widget.HowItWorks.currentContext!,
+    alignment: 0.0,
+    duration: Duration(milliseconds: 600),
+    curve: Curves.easeInOut,
+  );
+}
+
+      },
+      highlightColor: Colors.transparent,
+      // hoverColor: Colors.transparent,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        child: Text(
+          "How it works",
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            // color: 
+            
+            // color == null ?
+            // kTextColor : color
+          ),
+        ),
+      ),
+    ),
                     NavItem(
                       title: 'How it works',
-                      tapEvent: () {
-          },
+                      tapEvent: () =>
+                        Scrollable.ensureVisible(
+               widget. HowItWorks.currentContext!,
+                alignment: 0.0,
+                duration: Duration(milliseconds: 600),
+                curve: Curves.easeInOut,
+              ),
+        //                 Scrollable.ensureVisible(
+                          
+        //   widget.HowItWorks.contextValue,
+        //   duration: Duration(milliseconds: 600),
+        //   curve: Curves.decelerate,
+        // );
+
+              //           widget.controller.animateTo(
+              //   // Define the scroll position for the 'Product' section
+              //   1000, // Example: Scroll to 500 pixels
+              //   duration: Duration(milliseconds: 600),
+              //   curve: Curves.decelerate,
+              // );
+          // },
         
                     ),
                     NavItem(

@@ -1,27 +1,32 @@
+import 'package:ainews/home_scene.dart';
 import 'package:ainews/import.dart';
+import 'package:flutter/gestures.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   setUrlStrategy(PathUrlStrategy());
-  OpenAI.apiKey = "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";
-  Gemini.init(apiKey: "AIzaSyDztTJXIubhrH5LQ_Jejqys712iylUchwI");
+  DatabaseHelper.initDatabase();
   runApp(NewsVideoApp());}
 
 class NewsVideoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      scrollBehavior: ScrollBehavior(),
+    return MaterialApp(
+    // return GetMaterialApp(
+      
+      scrollBehavior: const MaterialScrollBehavior().copyWith(
+        dragDevices: {
+          PointerDeviceKind.mouse,
+          PointerDeviceKind.touch, PointerDeviceKind.stylus, 
+          PointerDeviceKind.unknown
+          },
+      ),
       title: 'Ai',
       home: 
 
-      // MyHomePage(),
-      LandingPage(),
+      const HomeScene(),
       routes: {
-        // '/product': (context) => Products(),
-        // '/usecases': (context) => HowItWorks(),
-        // '/features': (context) => Features(),
-        // '/creators': (context) => Creators(),
         '/HomePage': (context) => HomePage(),
         "/LandingPage" : (context) => LandingPage()
       },
@@ -37,3 +42,4 @@ class NewsVideoApp extends StatelessWidget {
     );
   }
 }
+

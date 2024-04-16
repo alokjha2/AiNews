@@ -37,15 +37,15 @@ dependencies:
   cupertino_icons:  
   get:  
   video_player: 
-  http:
+  http: ^0.13.1
   sqflite:
   flutter_tts: 
   flutter_gemini:  
   image_picker_web:  
-  loading_animation_widget: ^1.2.0+4  
+  loading_animation_widget: 
   dart_openai:  
   flutter_dotenv:  
-  stability_image_generation: 
+  # stability_image_generation: 
   flutter_webrtc: 
   socket_io_client: 
   peerdart: 
@@ -55,9 +55,17 @@ dependencies:
   device_frame: 
   animated_text_kit: 
   url_launcher:
-  timeline_tile: ^2.0.0
-  step_progress_indicator: ^1.0.2
-  entry: ^0.0.9
+  timeline_tile: 
+  step_progress_indicator: 
+  entry: 
+  firebase_admob: 
+  
+  three_dart: 
+  flutter_gl: 
+  three_dart_jsm: 
+  # google_fonts: ^3.0.1
+  equatable: 
+  very_good_analysis: 
 
 dev_dependencies:
   flutter_test:
@@ -84,6 +92,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/textures/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

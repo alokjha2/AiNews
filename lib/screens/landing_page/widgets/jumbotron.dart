@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:math';
 
 // import 'package:ainews/header.dart';
-import 'package:ainews/app.dart';
+import 'package:ainews/widgets/app.dart';
 import 'package:ainews/import.dart';
-import 'package:ainews/shootingStar.dart';
+import 'package:ainews/widgets/shootingStar.dart';
 import 'package:ainews/stars.dart' as a;
 import 'package:flutter/material.dart';
 
@@ -38,12 +38,12 @@ class _JumbotronState extends State<Jumbotron> with TickerProviderStateMixin {
     animationController.forward();
   }
 
-@override
-  void dispose() {
-    // Clean up resources here
-    this.dispose();
-    super.dispose();
-  }
+// @override
+//   void dispose() {
+//     // Clean up resources here
+//     this.dispose();
+//     super.dispose();
+//   }
   
 
   @override
